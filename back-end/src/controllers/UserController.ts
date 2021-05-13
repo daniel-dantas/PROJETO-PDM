@@ -1,5 +1,4 @@
-import User from "../models/user";
-import {uuid} from "uuidv4";
+import UserModel from "../models/user";
 import jwt from "json-web-token";
 import crypt from "bcrypt";
 
@@ -11,7 +10,7 @@ class UserController {
 
             const password = crypt.hash(user.password);
 
-            User.create({...user, password})
+            UserModel.create({...user, password})
                 .then((result) => {
                     return res.status(200).json(result);
                 })
@@ -31,7 +30,7 @@ class UserController {
 
     static async read(req, res) {
         try {
-            const user = await User.find();
+            const user = await UserModel.find();
 
             return res.status(200).json(user);
         } catch (err) {
@@ -44,7 +43,7 @@ class UserController {
 
     static async get(req, res) {
         try {
-            const user = await User.findOne({_id: req.params.id});
+            const user = await UserModel.findOne({_id: req.params.id});
             if (user) {
                 return res.status(200).json(user);
             } else {
@@ -65,7 +64,7 @@ class UserController {
         try {
             const {email, password} = req.body;
 
-            const user = await User.findOne({email});
+            const user = await UserModel.findOne({email});
 
             if (!user) return res.status(400).json({
                 message: "Authentication error"

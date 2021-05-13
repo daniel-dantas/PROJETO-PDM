@@ -1,23 +1,32 @@
 import express, {Express, json} from "express";
 import Cors from "cors";
+import MongoDB from "./databese/Mongo";
 
 export default class App {
 
     private main: Express;
 
-    constructor() {
+    constructor(uri_mongo) {
         this.main = express();
 
         // Processing settings
-        this.config();
+        this.config(uri_mongo);
 
         //Processing Routes
         this.routes();
     }
 
-    private config() {
+    private config(uri_mongo) {
         this.main.use(Cors());
         this.main.use(json());
+
+
+        MongoDB.connect(uri_mongo).then(() => {
+            console.log(`MongoDB runnig!`);
+        });
+
+        this.routes();
+
     }
 
     private routes() {
