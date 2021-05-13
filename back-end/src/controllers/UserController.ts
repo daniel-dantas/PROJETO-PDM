@@ -1,7 +1,8 @@
-const User = require("../models/User");
-const {uuid} = require("uuidv4");
-const jwt = require("json-web-token");
-const crypt = require("bcrypt");
+import User from "../models/user";
+import {uuid} from "uuidv4";
+import jwt from "json-web-token";
+import crypt from "bcrypt";
+
 
 class UserController {
     static async create(req, res) {
@@ -91,4 +92,4 @@ class UserController {
 
 }
 
-module.exports = UserController;
+export default UserController;
