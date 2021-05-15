@@ -1,6 +1,6 @@
 import express, {Express, json} from "express";
 import Cors from "cors";
-import MongoDB from "./databese/Mongo";
+import MongoDB from "./database/Mongo";
 
 export default class App {
 

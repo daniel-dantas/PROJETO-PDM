@@ -1,16 +1,16 @@
 import UserModel from "../models/user";
 import jwt from "json-web-token";
 import crypt from "bcrypt";
-
+import {IUser} from "../interfaces";
 
 class UserController {
     static async create(req, res) {
         try {
-            const user = req.body;
+            const user = req.body as IUser;
 
-            const password = crypt.hash(user.password);
+            const senha = crypt.hash(user.senha);
 
-            UserModel.create({...user, password})
+            UserModel.create({...user, senha})
                 .then((result) => {
                     return res.status(200).json(result);
                 })
