@@ -4,13 +4,14 @@ import {IStudent, IUser} from "../interfaces";
 import Student from "../models/Student";
 import Teacher from "../models/Teacher";
 import Principal from "../models/Principal";
+import {Response, Request} from "express";
 
 interface UserProps extends IUser {
     type: "Professor" | "Aluno" | "Diretor";
 }
 
 class UserController {
-    static async create(req, res) {
+    static async create(req: Request, res: Response) {
         try {
             const user = req.body as UserProps;
 
@@ -45,9 +46,9 @@ class UserController {
         }
     }
 
-    static async auth(req, res) {
+    static async auth(req: Request, res: Response) {
         try {
-            const {email, senha, type} = req.body as UserProps;
+            const {email, senha} = req.body as UserProps;
 
             let userResult: IUser = await Student.findOne({email});
 
@@ -80,7 +81,29 @@ class UserController {
 
 
         } catch (e) {
-            return res.status(500).json({});
+            return res.status(500).json({
+                message: "Authentication error"
+            });
+        }
+    }
+
+    static async read(req: Request, res: Response) {
+        try{
+            //Query Params booleans
+            const { alunos, professores, diretores } = req.query
+
+            const result: IUser[] = [];
+
+            if(alunos) result.concat(await Student.find());
+            if(professores) result.concat(await Teacher.find());
+            if(diretores) result.concat(await Principal.find());
+
+            return res.status(200).json(result);
+
+        } catch (e) {
+            return res.status(500).json({
+                message: "Failed read"
+            });
         }
     }
 
