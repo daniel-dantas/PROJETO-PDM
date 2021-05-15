@@ -1,6 +1,7 @@
 import  { model, Schema} from "mongoose";
+import {IClass} from "../interfaces";
 
-const Class = model(
+const Class = model<IClass>(
   "Class",
   new Schema({
     codigo: {

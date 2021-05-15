@@ -1,7 +1,8 @@
-import {model, Schema} from "mongoose";
+import {model, Schema, Types} from "mongoose";
+import {IStudent} from "../interfaces";
 
-const User = model(
-    "User",
+const Student = model<IStudent>(
+    "Student",
     new Schema({
         matricula: {
             unique: true,
@@ -28,14 +29,10 @@ const User = model(
             type: String,
             required: true,
         },
-        ocupacao: {
-            type: String,
-            required: true,
-        },
-        typeAccount: {
-            type: "Aluno" | "Professor" | "Diretor",
-            required: true,
+        turma: {
+            type: Types.ObjectId,
+            ref: "Class"
         }
     })
 );
-export default User;
+export default Student;

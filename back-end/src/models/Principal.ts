@@ -1,7 +1,8 @@
 import {model, Schema} from "mongoose";
+import {IPrincipal} from "../interfaces";
 
-const User = model(
-    "User",
+const Principal = model<IPrincipal>(
+    "Principal",
     new Schema({
         matricula: {
             unique: true,
@@ -28,14 +29,6 @@ const User = model(
             type: String,
             required: true,
         },
-        ocupacao: {
-            type: String,
-            required: true,
-        },
-        typeAccount: {
-            type: "Aluno" | "Professor" | "Diretor",
-            required: true,
-        }
     })
 );
-export default User;
+export default Principal;

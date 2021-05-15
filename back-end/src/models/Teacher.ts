@@ -1,7 +1,8 @@
 import {model, Schema} from "mongoose";
+import {ITeacher} from "../interfaces";
 
-const User = model(
-    "User",
+const Teacher = model<ITeacher>(
+    "Teacher",
     new Schema({
         matricula: {
             unique: true,
@@ -28,14 +29,10 @@ const User = model(
             type: String,
             required: true,
         },
-        ocupacao: {
+        titulo: {
             type: String,
-            required: true,
-        },
-        typeAccount: {
-            type: "Aluno" | "Professor" | "Diretor",
-            required: true,
+            required: true
         }
     })
 );
-export default User;
+export default Teacher;

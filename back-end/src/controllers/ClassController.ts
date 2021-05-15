@@ -1,4 +1,4 @@
-import ClassModel from "../models/class";
+import ClassModel from "../models/Class";
 
 
 class ClassController {
