@@ -1,25 +1,42 @@
-import UserModel from "../models/user";
 import jwt from "json-web-token";
 import crypt from "bcrypt";
-import {IUser} from "../interfaces";
+import {IStudent, IUser} from "../interfaces";
+import Student from "../models/Student";
+import Teacher from "../models/Teacher";
+import Principal from "../models/Principal";
+
+interface UserProps extends IUser {
+    type: "Professor" | "Aluno" | "Diretor";
+}
 
 class UserController {
     static async create(req, res) {
         try {
-            const user = req.body as IUser;
+            const user = req.body as UserProps;
 
-            const senha = crypt.hash(user.senha);
+            user.senha = await crypt.hash(user.senha);
 
-            UserModel.create({...user, senha})
-                .then((result) => {
-                    return res.status(200).json(result);
-                })
-                .catch((err) => {
-                    return res.status(500).json({
-                        message: "Created Failed",
-                        error: err,
-                    });
-                });
+            let result;
+
+            switch (user.type) {
+                case "Aluno":
+                    result = await Student.create(user as any);
+                    break;
+                case "Professor":
+                    result = await Teacher.create(user as any);
+                    break;
+                case "Diretor":
+                    result = await Principal.create(user as any);
+                    break;
+                default:
+                    result = null;
+            }
+
+            if (result) {
+                return res.status(200).json(result);
+            } else {
+                return res.status(404).json({message: "Inform user type"});
+            }
         } catch (err) {
             console.error(err);
             return res.status(500).json({
@@ -28,56 +45,34 @@ class UserController {
         }
     }
 
-    static async read(req, res) {
-        try {
-            const user = await UserModel.find();
-
-            return res.status(200).json(user);
-        } catch (err) {
-            return res.status(500).json({
-                message: "Read failed!",
-                error: err,
-            });
-        }
-    }
-
-    static async get(req, res) {
-        try {
-            const user = await UserModel.findOne({_id: req.params.id});
-            if (user) {
-                return res.status(200).json(user);
-            } else {
-                return res.status(400).json({
-                    message: "Does not user exists!",
-                    error: new Error("Does not user exists"),
-                });
-            }
-        } catch (err) {
-            return res.status(400).json({
-                message: "Get Failed",
-                error: err,
-            });
-        }
-    }
-
     static async auth(req, res) {
         try {
-            const {email, password} = req.body;
+            const {email, senha, type} = req.body as UserProps;
 
-            const user = await UserModel.findOne({email});
+            let userResult: IUser = await Student.findOne({email});
 
-            if (!user) return res.status(400).json({
+            if (!userResult) userResult = await Teacher.findOne({email});
+            if (!userResult) userResult = await Principal.findOne({email});
+
+            if (!userResult) return res.status(400).json({
                 message: "Authentication error"
             });
 
-            crypt.compare(password, user.password, (err, result) => {
-                jwt.encode(process.env.JWT_KEY, user._id, (err, token) => {
+            crypt.compare(senha, userResult.senha, (err, result) => {
+                jwt.encode(process.env.JWT_KEY, userResult._id, (err, token) => {
                     if (err) return res.status(400).json({
                         message: "Authentication error"
                     });
 
                     if (result) return res.status(200).json({
-                        token
+                        token,
+                        user: {
+                            _id: userResult._id,
+                            email: userResult.email,
+                            matricula: userResult.matricula,
+                            nome: userResult.nome,
+                            dataNascimento: userResult.dataNascimento,
+                        }
                     });
                 });
 

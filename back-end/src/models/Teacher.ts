@@ -31,7 +31,6 @@ const Teacher = model<ITeacher>(
         },
         titulo: {
             type: String,
-            required: true
         }
     })
 );
