@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
 class MongoDB {
-    static async connect(uri) {
-      return mongoose.connect(uri, {
+    static async connect(uri: string) {
+      return await mongoose.connect(uri, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
         useFindAndModify: false,

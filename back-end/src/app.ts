@@ -6,7 +6,7 @@ export default class App {
 
     private main: Express;
 
-    constructor(uri_mongo) {
+    constructor({uri_mongo}) {
         this.main = express();
 
         // Processing settings
