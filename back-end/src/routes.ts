@@ -9,7 +9,6 @@ const router = Router();
 // Usuer Routes
 router.post("/usuario", UserControoler.create);
 router.get("/usuario", UserControoler.read);
-router.get("/usuario/:id", UserControoler.get);
 router.post("/usuario/auth", UserControoler.auth);
 
 
