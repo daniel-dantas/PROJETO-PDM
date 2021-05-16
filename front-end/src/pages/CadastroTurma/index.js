@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
-import { View, Text, InputText, Button } from 'react-native';
-import { RectButton, TextInput } from 'react-native-gesture-handler';
+import { View, Text, Button } from 'react-native';
+import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 export default function CadastroTurma() {
 
 
@@ -13,6 +13,7 @@ export default function CadastroTurma() {
     async function CadastroTurma(serie, descricao){
         
     }
+
     return (
         <><View>
             <Text>Cadastro de Usuario</Text>
@@ -34,7 +35,7 @@ export default function CadastroTurma() {
                     autoCapitalize="none"
                 />
 
-                <Button onPress={() => {CadastroTurma(serie, email)}} >Cadastrar</Button>
+                <TouchableOpacity onPress={() => {CadastroTurma(serie, descricao).then()}} ><Text>Cadastrar</Text></TouchableOpacity>
         </View></>
     )
 }
