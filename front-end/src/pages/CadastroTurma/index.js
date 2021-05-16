@@ -16,7 +16,7 @@ export default function CadastroTurma() {
 
     return (
         <><View>
-            <Text>Cadastro de Usuario</Text>
+            <Text>Cadastro de Turma</Text>
 
             <TextInput
                     placeholder='Série'

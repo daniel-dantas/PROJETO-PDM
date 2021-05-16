@@ -1,19 +1,19 @@
 
 import React, {useState} from 'react';
-import { View, Text, Button } from 'react-native';
-import {RectButton, TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import { View, Text, Picker } from 'react-native';
+import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 export default function CadastroUser() {
-
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
     const [datanascimento, setDatanascimento] = useState('');
     const [senha, setSenha] = useState("");
     const [endereco, setEndereco] = useState('');
-
+    const [type, setType] = useState("Aluno");
+    const [titulo, setTitulo] = useState("");
 
     async function CadastroUsuario(nome, datanascimento, endereco, email, senha){
-        
+        alert(type);
     }
     return (
         <View>
@@ -59,6 +59,22 @@ export default function CadastroUser() {
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
+            <Picker selectedValue={type} onValueChange={(value, itemIndex) => setType(value)}>
+                <Picker.Item label="Aluno" value="Aluno"/>
+                <Picker.Item label="Professor" value="Professor"/>
+                <Picker.Item label="Diretor" value="Diretor"/>
+            </Picker>
+
+            {type === "Professor" && (
+                <TextInput
+                    placeholder='Titulo'
+                    placeholderTextColor="#aaaaaa"
+                    onChangeText={ titulo => setTitulo(titulo)}
+                    value={titulo}
+                    underlineColorAndroid="transparent"
+                    autoCapitalize="none"
+                />
+            )}
 
             <TouchableOpacity onPress={() => {CadastroUsuario(nome, datanascimento, endereco, email, senha)}} ><Text>Cadastrar</Text></TouchableOpacity>
         </View>
