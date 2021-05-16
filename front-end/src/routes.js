@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Cadastro from "./pages/CadastrodeUser"
 import CadastroTurma from "./pages/CadastroTurma";
 import Login from "./pages/Login";
+import MenuConta from "./pages/MenuConta"
 
 const Stack = createStackNavigator();
 
@@ -18,6 +19,9 @@ const Route = () => {
                     headerShown: false
                 }} />
                 <Stack.Screen name="Login" component={Login} options={{
+                    headerShown: false
+                }} />
+                <Stack.Screen name="MenuConta" component={MenuConta} options={{
                     headerShown: false
                 }} />
             </Stack.Navigator>
