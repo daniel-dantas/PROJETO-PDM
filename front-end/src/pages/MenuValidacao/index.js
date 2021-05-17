@@ -1,8 +1,9 @@
 
 import React, {useState} from 'react';
-import { View, Text, TouchableOpacity, Button } from 'react-native';
+import { View, Text, TouchableOpacit } from 'react-native';
 import { RectButton, TextInput } from 'react-native-gesture-handler';
 import {useNavigation} from "@react-navigation/native";
+import { Container, UpperTitle, Button, DeleteButton, LogoutButton } from "./styles";
 
 export default function MenuValidacao() {
 
@@ -10,7 +11,7 @@ export default function MenuValidacao() {
     const navigation = useNavigation();
 
 
-    const {user, logout} = useAuth();
+    // const {user, logout} = useAuth();
     function ValidarVinculo(){
         Navigation.navigate("Vinculacao");
 
@@ -22,9 +23,11 @@ export default function MenuValidacao() {
    
     
     return (
+        <Container>
         <><View>
-            <TouchableOpacity onPress={() => ValidarVinculo()}><Text>Validar Vinculo de Professor</Text></TouchableOpacity>
-            <TouchableOpacity onPress={() => ValidarMatricula()}><Text>Validar Matrícula de Alunos</Text></TouchableOpacity>
+            <Button onPress={() => ValidarVinculo()}>Validar Vinculo de Professor</Button>
+            <Button onPress={() => ValidarMatricula()}>Validar Matrícula de Alunos</Button>
         </View></>
+        </Container>
     )
 }

@@ -1,6 +1,5 @@
 import React, {useState} from "react";
 import {Text, View} from "react-native";
-import {TouchableOpacity} from "react-native-gesture-handler";
 import {useNavigation} from "@react-navigation/native";
 import { Container, UpperTitle, Input, Label, Button } from "../CadastrodeUser/styles";
 import {useDispatch} from "react-redux";
@@ -34,6 +33,7 @@ export default function Login() {
             <Label>Senha:</Label>
             <Input placeholder="Senha" value={senha} onChangeText={senha => setSenha(senha)}/>
             <TouchableOpacity onPress={() => autenticar()}><Button>Entrar</Button></TouchableOpacity>
+            <Label></Label>
             <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}><Button>Cadastrar-se</Button></TouchableOpacity>
         </View>
         </Container>

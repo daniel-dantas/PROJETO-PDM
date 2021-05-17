@@ -98,6 +98,7 @@ export default function CadastroUser() {
                     autoCapitalize="none"
                 />
             )}
+            <Label></Label>
             <TouchableOpacity onPress={CadastroUsuario} ><Button>Cadastrar</Button></TouchableOpacity>
         </View>
         </Container>
