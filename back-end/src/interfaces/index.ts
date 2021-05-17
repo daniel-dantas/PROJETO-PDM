@@ -1,5 +1,4 @@
 export interface IUser {
-    _id?: string;
     matricula: string | number;
     senha: string;
     nome: string;

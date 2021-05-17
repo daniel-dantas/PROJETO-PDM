@@ -9,22 +9,21 @@ export default function DashboardAluno() {
     const navigation = useNavigation();
 
     async function Turma(){
-        Navigation.navigate("Turma");
+        navigation.navigate("Turma");
     }
 
     async function Matricular(){
-        Navigation.navigate("Matricular");
+        navigation.navigate("Matricular");
     }
 
     return (
         <View>
             <Text>Turma</Text>
-        {map(subject => ( 
-           <TouchableOpacity onPress={() => Turma(subject)}> <Info>serie</Info>,
-            <Info>professor</Info> </TouchableOpacity>
-             ))}
+
+            <Text>serie</Text>,
+            <Text>professor</Text>
           
-            <TouchableOpacity onPress={() => {Matricular()}} ><Text>Matricular</Text></TouchableOpacity>
+            <TouchableOpacity><Text>Matricular</Text></TouchableOpacity>
         </View>
     )
 }

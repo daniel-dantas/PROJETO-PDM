@@ -1,7 +1,11 @@
-import  { model, Schema} from "mongoose";
+import  { model, Schema, Document} from "mongoose";
 import {IClass} from "../interfaces";
 
-const Class = model<IClass>(
+interface ClassModel extends IClass, Document{
+
+}
+
+const Class = model<ClassModel>(
   "Class",
   new Schema({
     codigo: {

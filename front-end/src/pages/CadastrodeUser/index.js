@@ -3,6 +3,9 @@ import React, {useState} from 'react';
 import { View, Text } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import { Container, UpperTitle, Input, Label, Picker, Button } from './styles';
+import {useDispatch} from "react-redux";
+import {register} from "../../store/actions/user";
+import {useNavigation} from "@react-navigation/native";
 export default function CadastroUser() {
 
     const [nome, setNome] = useState("");
@@ -13,7 +16,14 @@ export default function CadastroUser() {
     const [type, setType] = useState("Aluno");
     const [titulo, setTitulo] = useState("");
 
-    async function CadastroUsuario(nome, datanascimento, endereco, email, senha){
+    const navigation = useNavigation();
+    const dispatch = useDispatch();
+
+    async function CadastroUsuario(){
+        dispatch(register({nome, dataNascimento: datanascimento, senha, endereco, email, type, titulo}, (err, response) => {
+            if(err) alert("Error in register");
+            if(!err) navigation.navigate("Login");
+        }))
         alert(type);
     }
     return (
@@ -88,8 +98,7 @@ export default function CadastroUser() {
                     autoCapitalize="none"
                 />
             )}
-            <br></br><br></br>
-            <TouchableOpacity onPress={() => {CadastroUsuario(nome, datanascimento, endereco, email, senha)}} ><Button>Cadastrar</Button></TouchableOpacity>
+            <TouchableOpacity onPress={CadastroUsuario} ><Button>Cadastrar</Button></TouchableOpacity>
         </View>
         </Container>
     )

@@ -1,6 +1,7 @@
 import express, {Express, json} from "express";
 import Cors from "cors";
 import MongoDB from "./database/Mongo";
+import Routes from "./routes";
 
 export default class App {
 
@@ -11,9 +12,6 @@ export default class App {
 
         // Processing settings
         this.config(uri_mongo);
-
-        //Processing Routes
-        this.routes();
     }
 
     private config(uri_mongo) {
@@ -35,6 +33,7 @@ export default class App {
                 message: "Aplication development"
             });
         })
+        this.main.use("/api/v1", Routes);
     }
 
     public listen(PORT) {

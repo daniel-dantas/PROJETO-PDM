@@ -1,12 +1,14 @@
-import {model, Schema} from "mongoose";
+import {model, Schema, Document} from "mongoose";
 import {IPrincipal} from "../interfaces";
+interface PrincipalModel extends IPrincipal, Document {
 
-const Principal = model<IPrincipal>(
+}
+const Principal = model<PrincipalModel>(
     "Principal",
     new Schema({
         matricula: {
             unique: true,
-            type: Number,
+            type: String,
         },
         nome: {
             type: String,

@@ -1,12 +1,16 @@
-import {model, Schema, Types} from "mongoose";
+import {model, Schema, Types, Document} from "mongoose";
 import {IStudent} from "../interfaces";
 
-const Student = model<IStudent>(
+interface StudentModel extends IStudent, Document {
+
+}
+
+const Student = model<StudentModel>(
     "Student",
     new Schema({
         matricula: {
             unique: true,
-            type: Number,
+            type: String,
         },
         nome: {
             type: String,

@@ -15,28 +15,38 @@ class UserController {
         try {
             const user = req.body as UserProps;
 
-            user.senha = await crypt.hash(user.senha);
+            // @ts-ignore
+
 
             let result;
 
             switch (user.type) {
                 case "Aluno":
-                    result = await Student.create(user as any);
+                    const alunoCount = await Student.countDocuments();
+                    crypt.hash(user.senha, 1, async (err, pass) => {
+                        user.senha = pass;
+                        result = await Student.create({...user, matricula: "A"+alunoCount} as any);
+                        return res.status(200).json(result);
+                    });
                     break;
                 case "Professor":
-                    result = await Teacher.create(user as any);
+                    const professorCount = await Teacher.countDocuments();
+                    crypt.hash(user.senha, 1, async (err, pass) => {
+                        user.senha = pass;
+                        result = await Teacher.create({...user, matricula: "P"+(professorCount+1)} as any);
+                        return res.status(200).json(result);
+                    });
                     break;
                 case "Diretor":
-                    result = await Principal.create(user as any);
+                    const diretorCount = await Principal.countDocuments();
+                    crypt.hash(user.senha, 1, async (err, pass) => {
+                        user.senha = pass;
+                        result = await Principal.create({...user, matricula: "D"+(diretorCount+1)} as any);
+                        return res.status(200).json(result);
+                    });
                     break;
                 default:
-                    result = null;
-            }
-
-            if (result) {
-                return res.status(200).json(result);
-            } else {
-                return res.status(404).json({message: "Inform user type"});
+                    return res.status(404).json({message: "Inform user type"});
             }
         } catch (err) {
             console.error(err);
@@ -60,6 +70,7 @@ class UserController {
             });
 
             crypt.compare(senha, userResult.senha, (err, result) => {
+                // @ts-ignore
                 jwt.encode(process.env.JWT_KEY, userResult._id, (err, token) => {
                     if (err) return res.status(400).json({
                         message: "Authentication error"
@@ -68,6 +79,7 @@ class UserController {
                     if (result) return res.status(200).json({
                         token,
                         user: {
+                            // @ts-ignore
                             _id: userResult._id,
                             email: userResult.email,
                             matricula: userResult.matricula,
@@ -81,6 +93,7 @@ class UserController {
 
 
         } catch (e) {
+            console.log(e);
             return res.status(500).json({
                 message: "Authentication error"
             });
