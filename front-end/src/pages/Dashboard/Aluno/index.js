@@ -18,6 +18,7 @@ export default function DashboardAluno() {
 
     return (
         <View>
+            {/* Isso é uma lista */}
             <Text>Turma</Text>
 
             <Text>serie</Text>
