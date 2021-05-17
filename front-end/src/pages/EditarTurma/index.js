@@ -1,7 +1,8 @@
 
 import React, {useState} from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import { Container, UpperTitle, Input, Label, Button } from "../CadastrodeUser/styles";
 export default function EditarTurma() {
 
 
@@ -15,10 +16,11 @@ export default function EditarTurma() {
     }
 
     return (
+        <Container>
+            <UpperTitle>Editar de Turma</UpperTitle>
         <><View>
-            <Text>Editar de Turma</Text>
-
-            <TextInput
+                <Label>Série:</Label>
+                <Input
                     placeholder='Série'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={ serie => setSerie(serie)}
@@ -26,7 +28,9 @@ export default function EditarTurma() {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                <TextInput
+
+                <Label>Descrição:</Label>
+                <Input
                     placeholder='Descrição'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={ descricao => setDescricao(descricao)}
@@ -34,8 +38,10 @@ export default function EditarTurma() {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-
-                <TouchableOpacity onPress={() => {EditarTurma(serie, descricao).then()}} ><Text>Editar</Text></TouchableOpacity>
+                
+                <Label></Label>
+                <Button onPress={() => {EditarTurma(serie, descricao).then()}}>Editar</Button>
         </View></>
+        </Container>
     )
 }

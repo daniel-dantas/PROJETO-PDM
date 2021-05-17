@@ -88,8 +88,9 @@ export default function CadastroUser() {
                     autoCapitalize="none"
                 />
             )}
-            <br></br><br></br>
-            <TouchableOpacity onPress={() => {CadastroUsuario(nome, datanascimento, endereco, email, senha)}} ><Button>Cadastrar</Button></TouchableOpacity>
+            
+            <Label></Label>
+            <Button onPress={() => {CadastroUsuario(nome, datanascimento, endereco, email, senha)}}>Cadastrar</Button>
         </View>
         </Container>
     )

@@ -24,40 +24,41 @@ const Route = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
-                <Stack.Screen name="Login" component={Login} options={{
-                    headerShown: false
-                }} />
-                <Stack.Screen name="Cadastro" component={Cadastro} options={{
-                    headerShown: false
-                }} />
-                <Stack.Screen name="CadastroTurma" component={CadastroTurma} options={{
-                    headerShown: false
-                }} />
-                
-                <Stack.Screen name="MenuConta" component={MenuConta} options={{
-                    headerShown: false
-                }} />
-                <Stack.Screen name="MenuValidar" component={MenuValidar} options={{
-                    headerShown: false
-                }} />
-                <Stack.Screen name="EditarTurma" component={EditarTurma} options={{
-                    headerShown: false
-                }} />
-                <Stack.Screen name="Turma" component={Turma} options={{
-                    headerShown: false
-                }} />
-                <Stack.Screen name="Matricular" component={Matricular} options={{
-                    headerShown: false
-                }} />
-                <Stack.Screen name="Vincular" component={Vincular} options={{
+                <Stack.Screen name="Aluno" component={Aluno} options={{
                     headerShown: false
                 }} />
                 <Stack.Screen name="EditarConta" component={EditarConta} options={{
                     headerShown: false
                 }} />
-                <Stack.Screen name="Aluno" component={Aluno} options={{
+                <Stack.Screen name="Vincular" component={Vincular} options={{
                     headerShown: false
                 }} />
+                <Stack.Screen name="Matricular" component={Matricular} options={{
+                    headerShown: false
+                }} />
+                <Stack.Screen name="Turma" component={Turma} options={{
+                    headerShown: false
+                }} />
+                <Stack.Screen name="EditarTurma" component={EditarTurma} options={{
+                    headerShown: false
+                }} />
+                <Stack.Screen name="MenuValidar" component={MenuValidar} options={{
+                    headerShown: false
+                }} />
+                <Stack.Screen name="Cadastro" component={Cadastro} options={{
+                    headerShown: false
+                }} />
+                <Stack.Screen name="Login" component={Login} options={{
+                    headerShown: false
+                }} />
+                <Stack.Screen name="CadastroTurma" component={CadastroTurma} options={{
+                    headerShown: false
+                }} />
+                <Stack.Screen name="MenuConta" component={MenuConta} options={{
+                    headerShown: false
+                }} />            
+                
+            
                 <Stack.Screen name="Professor" component={Professor} options={{
                     headerShown: false
                 }} />
