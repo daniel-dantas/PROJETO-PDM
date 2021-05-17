@@ -24,15 +24,16 @@ const Route = () => {
     return (
         <NavigationContainer>
             <Stack.Navigator>
+                <Stack.Screen name="Login" component={Login} options={{
+                    headerShown: false
+                }} />
                 <Stack.Screen name="Cadastro" component={Cadastro} options={{
                     headerShown: false
                 }} />
                 <Stack.Screen name="CadastroTurma" component={CadastroTurma} options={{
                     headerShown: false
                 }} />
-                <Stack.Screen name="Login" component={Login} options={{
-                    headerShown: false
-                }} />
+                
                 <Stack.Screen name="MenuConta" component={MenuConta} options={{
                     headerShown: false
                 }} />

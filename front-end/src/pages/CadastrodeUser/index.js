@@ -1,7 +1,8 @@
 
 import React, {useState} from 'react';
-import { View, Text, Picker } from 'react-native';
+import { View, Text } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import { Container, UpperTitle, Input, Label, Picker, Button } from './styles';
 export default function CadastroUser() {
 
     const [nome, setNome] = useState("");
@@ -16,10 +17,12 @@ export default function CadastroUser() {
         alert(type);
     }
     return (
+        <Container>
+            <UpperTitle>Cadastro</UpperTitle>
         <View>
-            <Text>Cadastro de Usuario</Text>
-
-            <TextInput
+            
+            <Label>Nome:</Label>
+            <Input
                 placeholder='Nome'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ nome => setNome(nome)}
@@ -27,7 +30,9 @@ export default function CadastroUser() {
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
-            <TextInput
+
+            <Label>Data de Nascimento:</Label>
+            <Input
                 placeholder='Data de Nascimento'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ datanascimento => setDatanascimento(datanascimento)}
@@ -35,7 +40,9 @@ export default function CadastroUser() {
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
-            <TextInput
+
+            <Label>Endereço:</Label>
+            <Input
                 placeholder='Endereço'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ endereco => setEndereco(endereco)}
@@ -43,7 +50,9 @@ export default function CadastroUser() {
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
-            <TextInput
+
+            <Label>Email:</Label>
+            <Input
                 placeholder='E-mail'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ email => setEmail(email)}
@@ -51,7 +60,9 @@ export default function CadastroUser() {
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
-            <TextInput
+
+            <Label>Senha:</Label>
+            <Input
                 placeholder='Senha'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ senha => setSenha(senha)}
@@ -59,6 +70,8 @@ export default function CadastroUser() {
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
+
+            <Label>Ocupação:</Label>
             <Picker selectedValue={type} onValueChange={(value, itemIndex) => setType(value)}>
                 <Picker.Item label="Aluno" value="Aluno"/>
                 <Picker.Item label="Professor" value="Professor"/>
@@ -66,7 +79,7 @@ export default function CadastroUser() {
             </Picker>
 
             {type === "Professor" && (
-                <TextInput
+                <Input
                     placeholder='Titulo'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={ titulo => setTitulo(titulo)}
@@ -75,8 +88,9 @@ export default function CadastroUser() {
                     autoCapitalize="none"
                 />
             )}
-
-            <TouchableOpacity onPress={() => {CadastroUsuario(nome, datanascimento, endereco, email, senha)}} ><Text>Cadastrar</Text></TouchableOpacity>
+            <br></br><br></br>
+            <TouchableOpacity onPress={() => {CadastroUsuario(nome, datanascimento, endereco, email, senha)}} ><Button>Cadastrar</Button></TouchableOpacity>
         </View>
+        </Container>
     )
 }
