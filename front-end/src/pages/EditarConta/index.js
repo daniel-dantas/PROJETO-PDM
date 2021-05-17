@@ -1,9 +1,9 @@
 
 import React, {useState} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, Picker } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
-import { Container, UpperTitle, Input, Label, Picker, Button } from './styles';
-export default function CadastroUser() {
+export default function EditarUser() {
+    const {user} = useAuth();
 
     const [nome, setNome] = useState("");
     const [email, setEmail] = useState("");
@@ -13,84 +13,71 @@ export default function CadastroUser() {
     const [type, setType] = useState("Aluno");
     const [titulo, setTitulo] = useState("");
 
-    async function CadastroUsuario(nome, datanascimento, endereco, email, senha){
+    async function EditarUsuario(nome, datanascimento, endereco, email, senha, type){
         alert(type);
     }
     return (
-        <Container>
-            <UpperTitle>Cadastro</UpperTitle>
         <View>
-            
-            <Label>Nome:</Label>
-            <Input
+            <Text>Editar Usuario</Text>
+
+            <TextInput
                 placeholder='Nome'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ nome => setNome(nome)}
-                value={nome}
+                value={user.nome}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
-
-            <Label>Data de Nascimento:</Label>
-            <Input
+            <TextInput
                 placeholder='Data de Nascimento'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ datanascimento => setDatanascimento(datanascimento)}
-                value={datanascimento}
+                value={user.datanascimento}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
-
-            <Label>Endereço:</Label>
-            <Input
+            <TextInput
                 placeholder='Endereço'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ endereco => setEndereco(endereco)}
-                value={endereco}
+                value={user.endereco}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
-
-            <Label>Email:</Label>
-            <Input
+            <TextInput
                 placeholder='E-mail'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ email => setEmail(email)}
-                value={email}
+                value={user.email}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
-
-            <Label>Senha:</Label>
-            <Input
+            <TextInput
                 placeholder='Senha'
                 placeholderTextColor="#aaaaaa"
                 onChangeText={ senha => setSenha(senha)}
-                value={senha}
+                value={user.senha}
                 underlineColorAndroid="transparent"
                 autoCapitalize="none"
             />
-
-            <Label>Ocupação:</Label>
-            <Picker selectedValue={type} onValueChange={(value, itemIndex) => setType(value)}>
+            <Picker selectedValue={user.type} onValueChange={(value, itemIndex) => setType(value)}>
                 <Picker.Item label="Aluno" value="Aluno"/>
                 <Picker.Item label="Professor" value="Professor"/>
                 <Picker.Item label="Diretor" value="Diretor"/>
             </Picker>
 
             {type === "Professor" && (
-                <Input
+                <TextInput
                     placeholder='Titulo'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={ titulo => setTitulo(titulo)}
-                    value={titulo}
+                    value={user.titulo}
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
             )}
-            <br></br><br></br>
-            <TouchableOpacity onPress={() => {CadastroUsuario(nome, datanascimento, endereco, email, senha)}} ><Button>Cadastrar</Button></TouchableOpacity>
+
+            <TouchableOpacity onPress={() => {EditarUsuario(nome, datanascimento, endereco, email, senha, type)}} ><Text>Editar</Text></TouchableOpacity>
         </View>
-        </Container>
     )
 }

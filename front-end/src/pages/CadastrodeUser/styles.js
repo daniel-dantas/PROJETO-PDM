@@ -18,7 +18,8 @@ export const Title = styled.Text`
 `;
 
 export const UpperTitle = styled(Title)`
-  padding-bottom: 10px;
+  position: absolute;
+  top: 13%;
   font-size: 35px;
   color: #fff;
 `;
