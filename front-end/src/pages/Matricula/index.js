@@ -1,23 +1,21 @@
 
 import React, {useState} from 'react';
-import { View, Text, Picker } from 'react-native';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
-
+import { View, Text } from 'react-native';
+import { Container, UpperTitle, Input, Label, Button, DeleteButton } from "../CadastrodeUser/styles";
 export default function Matricula() {
         
-
-
     async function Matricular(){
     }
 
     return (
+        <Container>
+        <UpperTitle>Matricular-se</UpperTitle>
         <View>
-            <Text>Matricula-se</Text>
-        {map(subject => ( 
-           <TouchableOpacity onPress={() => Turma(subject)}> <Info>serie</Info>,
-            <Info>professor</Info> </TouchableOpacity>,
-            <TouchableOpacity onPress={() => Matricular(subject)}><Info>Apagar</Info></TouchableOpacity>
-            ))}
+            {/* {map(subject => (  */}
+            <Button onPress={() => Turma(subject)}><Label>serie</Label><Label>Professor</Label></Button>
+            <DeleteButton onPress={() => Matricular(subject)}>Apagar</DeleteButton>
+            {/* ))} */}
         </View>
+        </Container>
     )
 }

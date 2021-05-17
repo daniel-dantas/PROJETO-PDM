@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
-import { View, Text, Button } from 'react-native';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import { View, Text } from 'react-native';
+import { Container, UpperTitle, Input, Label, Button } from "../CadastrodeUser/styles";
 export default function CadastroTurma() {
 
 
@@ -15,10 +15,12 @@ export default function CadastroTurma() {
     }
 
     return (
+        <Container>
+            <UpperTitle>Cadastro de Turma</UpperTitle>
         <><View>
-            <Text>Cadastro de Turma</Text>
 
-            <TextInput
+                <Label>Série:</Label>
+                <Input
                     placeholder='Série'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={ serie => setSerie(serie)}
@@ -26,7 +28,9 @@ export default function CadastroTurma() {
                     underlineColorAndroid="transparent"
                     autoCapitalize="none"
                 />
-                <TextInput
+
+                <Label>Descrição:</Label>
+                <Input
                     placeholder='Descrição'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={ descricao => setDescricao(descricao)}
@@ -35,7 +39,9 @@ export default function CadastroTurma() {
                     autoCapitalize="none"
                 />
 
-                <TouchableOpacity onPress={() => {CadastroTurma(serie, descricao).then()}} ><Text>Cadastrar</Text></TouchableOpacity>
+                <Label></Label>
+                <Button onPress={() => {CadastroTurma(serie, descricao).then()}}>Cadastrar</Button>
         </View></>
+        </Container>
     )
 }

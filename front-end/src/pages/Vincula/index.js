@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
-import { View, Text, Picker } from 'react-native';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import { View } from 'react-native';
+import { Container, UpperTitle, Label, Button, DeleteButton } from "./styles";
 
 export default function Vincula() {
         
@@ -11,13 +11,18 @@ export default function Vincula() {
     }
 
     return (
-        <View>
-            <Text>Turmas sem Vinculo</Text>
-        {map(subject => ( 
-           <TouchableOpacity onPress={() => Turma(subject)}> <Info>serie</Info>,
-            <Info>professor</Info> </TouchableOpacity>,
-            <TouchableOpacity onPress={() => Vincular(subject)}><Info>Apagar</Info></TouchableOpacity>
-            ))}
+        <Container>
+            <UpperTitle>Turmas sem Vinculo</UpperTitle>
+        <><View>
+            
+            <Button onPress={() => Turma(subject)}><Label>serie, </Label>
+            <Label>professor</Label></Button>
+
+            <Label></Label>    
+            <DeleteButton onPress={() => Vincular(subject)}><Label>Apagar</Label></DeleteButton>
+        
         </View>
+        </>
+        </Container>
     )
 }
