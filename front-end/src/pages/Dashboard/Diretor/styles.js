@@ -55,7 +55,7 @@ export const Picker = styled.Picker`
 
 export const Button = styled.Text`
   color: #000;
-  background-color: #75E6DA;
+  //background-color: #75E6DA;
   font-size: 18px;
   font-weight: bold;
   text-align: center;

@@ -8,7 +8,9 @@ const router = Router();
 router.post("/usuario", UserController.create);
 router.get("/usuario", UserController.read);
 router.post("/usuario/auth", UserController.auth);
+router.post("/usuario/auth/refresh", UserController.refresh);
 
+router.post("/turma/matricular", ClassController.matricular)
 
 // Usuer Routes
 router.post("/turma", ClassController.create);

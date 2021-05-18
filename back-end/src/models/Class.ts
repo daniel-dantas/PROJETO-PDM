@@ -1,4 +1,4 @@
-import  { model, Schema, Document} from "mongoose";
+import  { model, Schema, Document, Types} from "mongoose";
 import {IClass} from "../interfaces";
 
 interface ClassModel extends IClass, Document{
@@ -19,6 +19,13 @@ const Class = model<ClassModel>(
       type: String,
       required: true,
     },
+    diretor: {
+        type: Types.ObjectId,
+        ref: "Principal"
+    },
+    professor: {
+        type: String,
+    }
   })
 );
 export default Class;

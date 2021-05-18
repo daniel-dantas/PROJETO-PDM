@@ -20,17 +20,22 @@ import Diretor from "./pages/Dashboard/Diretor";
 import MenuValidar from "./pages/MenuValidacao";
 import Matriculas from "./pages/Matriculas";
 import Vinculacao from "./pages/Vinculacao";
-import {useSelector} from "react-redux";
-
+import {useDispatch, useSelector} from "react-redux";
+import {refresh} from "./store/actions/user";
 
 const Stack = createStackNavigator();
 
 const Route = () => {
 
+    const dispatch = useDispatch();
+
     const { user, token } = useSelector(state => state.user);
 
     useEffect(() => {
-        console.log(token);
+        setTimeout(() => {
+            console.log("atualizado");
+            dispatch(refresh());
+        }, 2000);
     }, [token]);
 
     return (

@@ -2,16 +2,25 @@
 import React, {useState} from 'react';
 import { View, Text } from 'react-native';
 import { Container, UpperTitle, Input, Label, Button } from "../CadastrodeUser/styles";
+import {useDispatch} from "react-redux";
+import {createClass} from "../../store/actions/class";
+import {useNavigation} from "@react-navigation/native";
 export default function CadastroTurma() {
 
 
+    const navigator = useNavigation();
+
+    const dispatch = useDispatch();
+
     const [serie, setSerie] = useState("");
     const [descricao, setDescricao] = useState("");
+    const [professor, setProfessor] = useState("");
 
 
-
-    async function CadastroTurma(serie, descricao){
-        
+    async function CadastroTurma(serie, descricao, professor){
+        dispatch(createClass({serie, descricao, professor}, (err, result) => {
+            if(!err) navigator.navigate("Diretor");
+        }));
     }
 
     return (
@@ -39,8 +48,18 @@ export default function CadastroTurma() {
                     autoCapitalize="none"
                 />
 
+                <Label>Professor:</Label>
+                <Input
+                    placeholder='Professor'
+                    placeholderTextColor="#aaaaaa"
+                    onChangeText={ professor => setProfessor(professor)}
+                    value={professor}
+                    underlineColorAndroid="transparent"
+                    autoCapitalize="none"
+                />
+
                 <Label></Label>
-                <Button onPress={() => {CadastroTurma(serie, descricao).then()}}>Cadastrar</Button>
+                <Button onPress={() => {CadastroTurma(serie, descricao, professor).then()}}>Cadastrar</Button>
         </View></>
         </Container>
     )

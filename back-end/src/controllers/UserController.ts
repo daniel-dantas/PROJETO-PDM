@@ -6,6 +6,7 @@ import Teacher from "../models/Teacher";
 import Principal from "../models/Principal";
 import {Response, Request} from "express";
 
+import ClassModel from "../models/Class";
 interface UserProps extends IUser {
     type: "Professor" | "Aluno" | "Diretor";
 }
@@ -56,14 +57,75 @@ class UserController {
         }
     }
 
+    static async refresh(req: Request, res: Response){
+        try {
+            const authHeader = req.headers.authorization;
+
+            // @ts-ignore
+            const [, token] = authHeader.split(" ")
+
+            console.log(token);
+
+            jwt.decode(process.env.JWT_KEY, token, async (err, tokenResult) => {
+
+                if(err) return res.status(404).json({
+                    message: "Authentication error"
+                });
+                if(!tokenResult) return res.status(404).json({
+                    message: "Authentication error"
+                });
+
+                let userResult: IUser = await Student.findById(tokenResult).populate("turma");
+
+                if (!userResult) {
+                    userResult = await Teacher.findById(tokenResult);
+                }
+                if (!userResult) {
+                    userResult = await Principal.findById(tokenResult);
+                    if(userResult)
+                        (userResult as any).turmas = await ClassModel.find({diretor:  (userResult as any)._id});
+                }
+                if (!userResult) return res.status(400).json({
+                    message: "Authentication error"
+                });
+
+                return res.status(200).json({
+                    token,
+                    user: {
+                        // @ts-ignore
+                        _id: userResult._id,
+                        email: userResult.email,
+                        matricula: userResult.matricula,
+                        nome: userResult.nome,
+                        dataNascimento: userResult.dataNascimento,
+                        turma: (userResult as any).turma,
+                        turmas: (userResult as any).turmas
+                    }
+                });
+            });
+
+        } catch (e) {
+            console.log(e);
+            return res.status(500).json({
+                message: "Authentication error"
+            });
+        }
+    }
+
     static async auth(req: Request, res: Response) {
         try {
             const {email, senha} = req.body as UserProps;
 
-            let userResult: IUser = await Student.findOne({email});
+            let userResult: IUser = await Student.findOne({email}).populate("turma").exec();
 
-            if (!userResult) userResult = await Teacher.findOne({email});
-            if (!userResult) userResult = await Principal.findOne({email});
+            if (!userResult) {
+                userResult = await Teacher.findOne({email});
+            }
+            if (!userResult) {
+                userResult = await Principal.findOne({email});
+                if(userResult)
+                (userResult as any).turmas = await ClassModel.find({diretor:  (userResult as any)._id});
+            }
 
             if (!userResult) return res.status(400).json({
                 message: "Authentication error"
@@ -85,6 +147,8 @@ class UserController {
                             matricula: userResult.matricula,
                             nome: userResult.nome,
                             dataNascimento: userResult.dataNascimento,
+                            turma: (userResult as any).turma,
+                            turmas: (userResult as any).turmas
                         }
                     });
                 });

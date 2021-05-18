@@ -3,6 +3,7 @@ import * as actions from "../actions/user";
 const initalState = {
     token: "",
     user: {},
+    users: [],
     typeAccount: "",
     loading: false,
 }
@@ -36,6 +37,29 @@ const reducer = function (state = initalState, { type, payload }) {
                 loading: false,
             }
         case actions.REGISTER_FAILED:
+            return {
+                ...state,
+                loading: false,
+            }
+        case actions.LOGOUT:
+            return {
+                ...state,
+                token: "",
+                user: {},
+                loading: false,
+            }
+        case actions.READ_USERS:
+            return {
+                ...state,
+                loading: true,
+            }
+        case actions.READ_USERS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                users: payload
+            }
+        case actions.READ_USERS_FAILED:
             return {
                 ...state,
                 loading: false,
