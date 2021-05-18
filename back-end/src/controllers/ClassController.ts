@@ -55,6 +55,28 @@ class ClassController {
         }
     }
 
+    static async update(req, res) {
+        try {
+            const classmodel = await ClassModel.findOne({_id: req.params.id});
+            const dados = req.body;
+            classmodel.updateOne({dados})      
+            .then((result) => {
+                return res.status(200).json(result);
+            })
+            .catch((err) => {
+                return res.status(500).json({
+                    message: "Update Failed",
+                    error: err,
+                });
+            });
+        } catch (err) {
+            return res.status(400).json({
+                message: "Get Failed",
+                error: err,
+            });
+        }
+    }
+
 }
 
 export default ClassController;
