@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { View, Text, Picker } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from "@react-navigation/native"; 
+import { Container, UpperTitle, Label, Button, Input, DeleteButton, Picker } from "./styles";
 
 export default function DashboardDiretor() {
         
@@ -17,14 +18,16 @@ export default function DashboardDiretor() {
     }
 
     return (
+        <Container>
+            <UpperTitle>Turmas Vinculadas</UpperTitle>
         <View>
-            <Text>Turmas Vinculadas</Text>
-        {map(subject => ( 
-           <TouchableOpacity onPress={() => Turma(subject)}> <Info>serie</Info>,
-            <Info>professor</Info> </TouchableOpacity>
-             ))}
+            {/* Lista */}
+            <Button onPress={() => Turma(subject)}> <Label>serie</Label>
+            <Label>professor</Label></Button>
+            
           
-            <TouchableOpacity onPress={() => {Vincular()}} ><Text>Matricular</Text></TouchableOpacity>
+            <Button onPress={() => {Vincular()}} >Vincular</Button>
         </View>
+        </Container>
     )
 }

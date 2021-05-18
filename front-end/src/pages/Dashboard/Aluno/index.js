@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from "@react-navigation/native"; 
+import { Container, UpperTitle, Label, Button, Input, DeleteButton, Picker } from "./styles";
 
 export default function DashboardAluno() {
         
@@ -17,14 +18,19 @@ export default function DashboardAluno() {
     }
 
     return (
+        <Container>
+            <UpperTitle>Turmas</UpperTitle>
         <View>
             {/* Isso é uma lista */}
-            <Text>Turma</Text>
+            <Button onPress={() => {Turma()}}>
+            <Label>Turma, série</Label>
+            <Label>professor</Label>
+            </Button>
 
-            <Text>serie</Text>
-            <Text>professor</Text>
-          
-            <TouchableOpacity><Text>Matricular</Text></TouchableOpacity>
+            <Label></Label>
+            <Button onPress={() => {Matricular()}}>Matricular</Button>
+            
         </View>
+        </Container>
     )
 }

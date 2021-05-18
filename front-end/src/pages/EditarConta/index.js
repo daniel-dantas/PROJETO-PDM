@@ -1,7 +1,6 @@
 
 import React, {useState} from 'react';
 import { View, Text } from 'react-native';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import { Container, UpperTitle, Label, Button, Input, DeleteButton, Picker } from "./styles";
 export default function EditarUser() {
     // const {user} = useAuth();
