@@ -32,9 +32,11 @@ export default function Login() {
             
             <Label>Senha:</Label>
             <Input placeholder="Senha" value={senha} onChangeText={senha => setSenha(senha)}/>
-            <TouchableOpacity onPress={() => autenticar()}><Button>Entrar</Button></TouchableOpacity>
+            
             <Label></Label>
-            <TouchableOpacity onPress={() => navigation.navigate("Cadastro")}><Button>Cadastrar-se</Button></TouchableOpacity>
+            <Button onPress={() => autenticar()}>Entrar</Button>
+            <Label></Label>
+            <Button onPress={() => navigation.navigate("Cadastro")}>Cadastrar-se</Button>
         </View>
         </Container>
     );

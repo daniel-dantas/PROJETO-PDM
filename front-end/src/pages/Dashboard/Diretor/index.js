@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import { View, Text, Picker } from 'react-native';
 import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
 import {useNavigation} from "@react-navigation/native"; 
+import { Container, UpperTitle, Label, Button, Input, DeleteButton, Picker } from "./styles";
 
 export default function DashboardDiretor() {
         
@@ -23,17 +24,19 @@ export default function DashboardDiretor() {
         Navigation.navigate("CadastroTurma");
     }
     return (
+        <Container>
+            <UpperTitle>Turmas</UpperTitle>
         <View>
-            <Text>Turmas</Text>
-        {map(subject => ( 
-           <TouchableOpacity onPress={() => Turma(subject)}> <Info>serie</Info>,
-            <Info>professor</Info> </TouchableOpacity>,
-            <TouchableOpacity onPress={() => EditarTurma(subject)}><Info>Editar</Info></TouchableOpacity>,
-            <TouchableOpacity onPress={() => ApagarTurma(subject)}><Info>Apagar</Info></TouchableOpacity>
-            ))}
+        
+            {/* Lista */}
+            <Button onPress={() => Turma(subject)}><Label>serie</Label><Label>professor</Label></Button>
+            <Button onPress={() => EditarTurma(subject)}>Editar</Button>
+            <Button onPress={() => ApagarTurma(subject)}>Apagar</Button>
+            
           
-          <TouchableOpacity onPress={() => {Validar()}} ><Text>Validar</Text></TouchableOpacity>
-            <TouchableOpacity onPress={() => {CriarTurma()}} ><Text>Criar Turma</Text></TouchableOpacity>
+            <Button onPress={() => {Validar()}}>Validar</Button>
+            <Button onPress={() => {CriarTurma()}}>Criar Turma</Button>
         </View>
+        </Container>
     )
 }

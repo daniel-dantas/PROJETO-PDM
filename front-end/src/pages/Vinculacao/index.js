@@ -1,7 +1,7 @@
 
 import React, {useState} from 'react';
 import { View, Text, Picker } from 'react-native';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import { Container, UpperTitle, Label, Button, Input, DeleteButton, Picker } from "./styles";
 
 export default function Vinculacao() {
         
@@ -13,15 +13,19 @@ export default function Vinculacao() {
         }
 
     return (
+        <Container>
+        <UpperTitle>Validar Vínculo</UpperTitle>
         <View>
-            <Text>Validar Vínculo</Text>
-        {map(subject => ( 
-           <TouchableOpacity onPress={() => Turma(subject)}> <Info>serie</Info>,
-            <Info>professor</Info> </TouchableOpacity>,
-            <TouchableOpacity onPress={() => Aprovar(subject)}><Info>Aprovar</Info></TouchableOpacity>,
-            <TouchableOpacity onPress={() => Negar(subject)}><Info>Negar</Info></TouchableOpacity>
-            ))}
+            
+            {/* Lista */}
+            <Button onPress={() => Turma(subject)}> <Label>serie</Label>
+            <Label>professor</Label> </Button>
+
+            <Button onPress={() => Aprovar(subject)}>Aprovar</Button>
+            <Button onPress={() => Negar(subject)}>Negar</Button>
+        
         
         </View>
+        </Container>
     )
 }
