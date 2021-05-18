@@ -14,6 +14,6 @@ router.post("/usuario/auth", UserController.auth);
 router.post("/turma", ClassController.create);
 router.get("/turma", ClassController.read);
 router.get("/turma/:id", ClassController.get);
-
+router.post("/turma/:id", ClassController.update);
 export default router;
 

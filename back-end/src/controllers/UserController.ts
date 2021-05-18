@@ -120,6 +120,10 @@ class UserController {
         }
     }
 
+    static async update(req: Request, res: Response) {
+        
+    }
+
 }
 
 export default UserController;
