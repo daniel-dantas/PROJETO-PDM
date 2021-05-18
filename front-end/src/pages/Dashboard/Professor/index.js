@@ -1,20 +1,20 @@
 
-import React, {useState} from 'react';
-import { View, Text, Picker } from 'react-native';
-import {TextInput, TouchableOpacity} from 'react-native-gesture-handler';
+import React from 'react';
+import { View} from 'react-native';
+
 import {useNavigation} from "@react-navigation/native"; 
-import { Container, UpperTitle, Label, Button, Input, DeleteButton, Picker } from "./styles";
+import { Container, UpperTitle, Label, Button} from "./styles";
 
 export default function DashboardDiretor() {
         
     const navigation = useNavigation();
 
     async function Turma(){
-        Navigation.navigate("Turma");
+        navigation.navigate("Turma");
     }
 
     async function Vincular(){
-        Navigation.navigate("Vincular");
+        navigation.navigate("Vincular");
     }
 
     return (

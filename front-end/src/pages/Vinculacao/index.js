@@ -1,31 +1,31 @@
-
-import React, {useState} from 'react';
-import { View, Text, Picker } from 'react-native';
-import { Container, UpperTitle, Label, Button, Input, DeleteButton, Picker } from "./styles";
+import React from 'react';
+import {View} from 'react-native';
+import {Container, UpperTitle, Label, Button} from "./styles";
 
 export default function Vinculacao() {
-        
 
-    async function Aprovar(){
+
+    async function Aprovar() {
     }
-    async function Negar(){
 
-        }
+    async function Negar() {
+
+    }
 
     return (
         <Container>
-        <UpperTitle>Validar Vínculo</UpperTitle>
-        <View>
-            
-            {/* Lista */}
-            <Button onPress={() => Turma(subject)}> <Label>serie</Label>
-            <Label>professor</Label> </Button>
+            <UpperTitle>Validar Vínculo</UpperTitle>
+            <View>
 
-            <Button onPress={() => Aprovar(subject)}>Aprovar</Button>
-            <Button onPress={() => Negar(subject)}>Negar</Button>
-        
-        
-        </View>
+                {/* Lista */}
+                <Button onPress={() => Turma()}> <Label>serie</Label>
+                    <Label>professor</Label> </Button>
+
+                <Button onPress={() => Aprovar()}>Aprovar</Button>
+                <Button onPress={() => Negar()}>Negar</Button>
+
+
+            </View>
         </Container>
     )
 }
